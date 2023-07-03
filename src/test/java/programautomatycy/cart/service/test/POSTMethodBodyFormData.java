@@ -33,5 +33,15 @@ public class POSTMethodBodyFormData {
 
         serviceHelper.sendPostRequest(queryParamsBody, endpoint);
     }
+
+    @Test
+    public void calculateWithBodyMap() {
+        Map<String, Object> queryParamsBody = new HashMap<>();
+        queryParamsBody.put("return", true);
+
+        String endpoint = "/cocart/v1/calculate";
+
+        serviceHelper.sendPostRequest(queryParamsBody, endpoint);
+    }
 }
 
