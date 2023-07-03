@@ -3,6 +3,8 @@ package helpers;
 import io.restassured.response.Response;
 import utils.GetPropertyValues;
 
+import java.util.Map;
+
 import static io.restassured.RestAssured.*;
 
 public class ServiceHelper {
@@ -23,6 +25,16 @@ public class ServiceHelper {
                 .queryParam("product_id", productId)
                 .queryParam("quantity", quantity)
                 .queryParam("return_cart", returnCart)
+                .baseUri(BASE_URI)
+                .post(endpoint);
+    }
+
+    public void sendPostRequest(Map<String, Object> queryParamsBody, String endpoint){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .queryParams(queryParamsBody)
                 .baseUri(BASE_URI)
                 .post(endpoint);
     }
