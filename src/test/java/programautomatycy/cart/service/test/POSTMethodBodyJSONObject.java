@@ -30,4 +30,16 @@ public class POSTMethodBodyJSONObject {
         serviceHelper.sendPostRequest(bodyRequest.toString(), endpoint);
     }
 
+    @Test
+    public void updateWithBodyJSONObject(){
+        JSONObject bodyRequest = new JSONObject();
+        bodyRequest.put("cart_item_key", "1385974ed5904a438616ff7bdb3f7439");
+        bodyRequest.put("return_cart", true);
+        bodyRequest.put("quantity", 2);
+
+        String endpoint = "/cocart/v1/item";
+
+        serviceHelper.sendPostRequest(bodyRequest.toString(), endpoint);
+    }
+
 }
