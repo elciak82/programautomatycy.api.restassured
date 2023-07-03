@@ -13,15 +13,21 @@ public class ServiceHelper {
     private final String PASSWORD = getPropertyValues.getPropValue("password");
     private final String BASE_URI = getPropertyValues.getPropValue("shopServerUrl");
 
+    private final SampleRest SAMPLE_REST = new SampleRest();
+
     public void addItem(Integer productId, Integer quantity, Boolean returnCart, String endpoint){
-        Response response = given()
+        SAMPLE_REST.response = given()
                 .auth()
                 .preemptive() //form omitted
-                .basic("elciak82@gmail.com", "Bartek2002!ycy")
+                .basic(LOGIN, PASSWORD)
                 .queryParam("product_id", productId)
                 .queryParam("quantity", quantity)
                 .queryParam("return_cart", returnCart)
-                .baseUri("https://programautomatycy.pl/wp-json")
+                .baseUri(BASE_URI)
                 .post(endpoint);
     }
+}
+
+class SampleRest {
+    public Response response;
 }
