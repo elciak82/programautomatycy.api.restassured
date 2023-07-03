@@ -1,5 +1,6 @@
 package helpers;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import utils.GetPropertyValues;
 
@@ -35,6 +36,19 @@ public class ServiceHelper {
                 .preemptive() //form omitted
                 .basic(LOGIN, PASSWORD)
                 .queryParams(queryParamsBody)
+                .baseUri(BASE_URI)
+                .post(endpoint);
+    }
+
+    public void sendPostRequest(String body, String endpoint){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .body(body)
+                .contentType(ContentType.JSON)
+//                .contentType("application/json")
+//                .header("Content-Type", "application/json")
                 .baseUri(BASE_URI)
                 .post(endpoint);
     }

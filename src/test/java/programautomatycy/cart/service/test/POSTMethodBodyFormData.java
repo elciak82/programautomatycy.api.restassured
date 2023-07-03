@@ -13,7 +13,7 @@ public class POSTMethodBodyFormData {
     @Test
     public void addItemWithBodyFromData(){
         Integer productId = 142;
-        Integer quantity = 2;
+        Integer quantity = 5;
         Boolean returnCart = true;
 
         String  endpoint = "/cocart/v1/add-item";
@@ -25,8 +25,8 @@ public class POSTMethodBodyFormData {
     @Test
     public void addItemWithBodyMap() {
         Map<String, Object> queryParamsBody = new HashMap<>();
-        queryParamsBody.put("product_id", "142");
-        queryParamsBody.put("quantity", 6);
+        queryParamsBody.put("product_id", "1690");
+        queryParamsBody.put("quantity", 1);
         queryParamsBody.put("return_cart", true);
 
         String endpoint = "/cocart/v1/add-item";
@@ -40,6 +40,18 @@ public class POSTMethodBodyFormData {
         queryParamsBody.put("return", true);
 
         String endpoint = "/cocart/v1/calculate";
+
+        serviceHelper.sendPostRequest(queryParamsBody, endpoint);
+    }
+
+    @Test
+    public void updateItemWithBodyMap() {
+        Map<String, Object> queryParamsBody = new HashMap<>();
+        queryParamsBody.put("cart_item_key", "d43ab110ab2489d6b9b2caa394bf920f");
+        queryParamsBody.put("quantity", 10);
+        queryParamsBody.put("return_cart", true);
+
+        String endpoint = "/cocart/v1/item";
 
         serviceHelper.sendPostRequest(queryParamsBody, endpoint);
     }
