@@ -1,6 +1,7 @@
 package programautomatycy.cart.service.test;
 
 import helpers.ServiceHelper;
+import io.restassured.response.Response;
 import org.junit.Test;
 
 public class GETMethod {
@@ -10,8 +11,9 @@ public class GETMethod {
     public void getCartContents() {
         String endpoint = "/cocart/v1/get-cart";
 
-        serviceHelper.sendGetRequest(endpoint);
+        Response response = serviceHelper.sendGetRequest(endpoint);
 
+        response.getBody().prettyPrint();
 
     }
 }

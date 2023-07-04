@@ -53,13 +53,15 @@ public class ServiceHelper {
                 .post(endpoint);
     }
 
-    public void sendGetRequest(String endpoint){
+    public Response sendGetRequest(String endpoint){
         SAMPLE_REST.response = given()
                 .auth()
                 .preemptive() //form omitted
                 .basic(LOGIN, PASSWORD)
                 .baseUri(BASE_URI)
                 .get(endpoint);
+
+        return SAMPLE_REST.response;
     }
 }
 
