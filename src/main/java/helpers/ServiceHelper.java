@@ -76,6 +76,30 @@ public class ServiceHelper {
 
         return SAMPLE_REST.response;
     }
+
+    public Response sendDeleteRequest(String endpoint){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .baseUri(BASE_URI)
+                .delete(endpoint);
+
+        return SAMPLE_REST.response;
+    }
+
+    public Response sendDeleteRequest(String endpoint, String body){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .baseUri(BASE_URI)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .delete(endpoint);
+
+        return SAMPLE_REST.response;
+    }
 }
 
 class SampleRest {
