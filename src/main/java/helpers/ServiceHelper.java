@@ -63,6 +63,19 @@ public class ServiceHelper {
 
         return SAMPLE_REST.response;
     }
+
+    public Response sendGetRequest(String endpoint, String body){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .baseUri(BASE_URI)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .get(endpoint);
+
+        return SAMPLE_REST.response;
+    }
 }
 
 class SampleRest {
