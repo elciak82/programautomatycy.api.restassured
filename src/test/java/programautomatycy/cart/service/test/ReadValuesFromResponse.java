@@ -83,10 +83,57 @@ public class ReadValuesFromResponse {
         Double total = obj.getJSONObject("5cf21ce30208cfffaa832c6e44bb567d").getJSONObject("line_tax_data").getJSONObject("total").getDouble("1");
         System.out.println(total);
 
-
     }
 
+    @Test
+    public void getCartContentMap() {
 
+        String endpoint = "/cocart/v1/get-cart";
 
+        Response response = serviceHelper.sendGetRequest(endpoint);
+
+        Map<String, Object> products = response.getBody().jsonPath().get();
+
+        for (Map.Entry<String, Object> product : products.entrySet()) {
+            System.out.println(product.getKey());
+
+            Map<String, Object> values = (Map<String, Object>) product.getValue();
+            System.out.println(values.get("product_id"));
+            System.out.println(values.get("quantity"));
+            System.out.println(values.get("product_name"));
+
+            Map<String, Object> lineTaxData = (Map<String, Object>) values.get("line_tax_data");
+            Map<String, Object> total = (Map<String, Object>) lineTaxData.get("total");
+            System.out.println(total.get("1"));
+
+            System.out.println("#############");
+        }
+    }
+
+    @Test
+    public void readValuesGetTotalsJSONObjectByKey() {
+        org.json.JSONObject bodyRequest = new org.json.JSONObject();
+
+        String parameters = "?html=true";
+        String endpoint = "/cocart/v1/totals";
+
+        Response response = serviceHelper.sendGetRequest(endpoint + parameters);
+
+        String subtotal = response.getBody().jsonPath().getString("subtotal");
+        System.out.println(subtotal);
+
+        String cartContentsTax = response.getBody().jsonPath().getString("cart_contents_tax");
+        System.out.println(cartContentsTax);
+
+        String jsonString = response.getBody().prettyPrint();
+        JSONObject obj = new JSONObject(jsonString);
+
+        int cartContentsTaxes = obj.getJSONObject("cart_contents_taxes").getInt("1");
+        System.out.println(cartContentsTaxes);
+
+        String total1 = obj.getString("total");
+        System.out.println(total1);
+
+    }
 
 }
