@@ -40,7 +40,7 @@ public class ServiceHelper {
                 .post(endpoint);
     }
 
-    public void sendPostRequest(String body, String endpoint){
+    public Response sendPostRequest(String body, String endpoint){
         SAMPLE_REST.response = given()
                 .auth()
                 .preemptive() //form omitted
@@ -51,6 +51,7 @@ public class ServiceHelper {
 //                .header("Content-Type", "application/json")
                 .baseUri(BASE_URI)
                 .post(endpoint);
+        return SAMPLE_REST.response;
     }
 
     public Response sendGetRequest(String endpoint){
