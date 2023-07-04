@@ -88,7 +88,7 @@ public class ServiceHelper {
         return SAMPLE_REST.response;
     }
 
-    public Response sendDeleteRequest(String endpoint, String body){
+    public Response sendDeleteRequest(String body, String endpoint){
         SAMPLE_REST.response = given()
                 .auth()
                 .preemptive() //form omitted
