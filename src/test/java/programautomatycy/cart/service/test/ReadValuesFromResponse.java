@@ -61,5 +61,32 @@ public class ReadValuesFromResponse {
 
     }
 
+    @Test
+    public void readValuesAddItemJSONObjectByKey() {
+        org.json.JSONObject bodyRequest = new org.json.JSONObject();
+        bodyRequest.put("product_id", 1696);
+        bodyRequest.put("quantity", 5);
+        bodyRequest.put("return_cart", true);
+
+        String endpoint = "/cocart/v1/add-item";
+        Response response = serviceHelper.sendPostRequest(bodyRequest.toString(), endpoint);
+
+        String jsonString = response.getBody().print();
+        JSONObject obj = new JSONObject(jsonString);
+
+        int productId = obj.getJSONObject("5cf21ce30208cfffaa832c6e44bb567d").getInt("product_id");
+        System.out.println(productId);
+
+        String productPrice = obj.getJSONObject("5cf21ce30208cfffaa832c6e44bb567d").getString("product_price");
+        System.out.println(productPrice);
+
+        Double total = obj.getJSONObject("5cf21ce30208cfffaa832c6e44bb567d").getJSONObject("line_tax_data").getJSONObject("total").getDouble("1");
+        System.out.println(total);
+
+
+    }
+
+
+
 
 }
