@@ -54,4 +54,16 @@ public class GETMethod {
         response.getBody().prettyPrint();
 
     }
+
+    @Test
+    public void getTotal() {
+
+        String parameters = "?html=true";
+        String endpoint = "/cocart/v1/totals";
+
+        Response response = serviceHelper.sendGetRequest(endpoint + parameters);
+
+        response.getBody().prettyPrint();
+
+    }
 }
