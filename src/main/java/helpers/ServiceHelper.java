@@ -52,6 +52,15 @@ public class ServiceHelper {
                 .baseUri(BASE_URI)
                 .post(endpoint);
     }
+
+    public void sendGetRequest(String endpoint){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .baseUri(BASE_URI)
+                .get(endpoint);
+    }
 }
 
 class SampleRest {
