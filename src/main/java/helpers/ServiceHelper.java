@@ -100,6 +100,28 @@ public class ServiceHelper {
 
         return SAMPLE_REST.response;
     }
+
+    public void sendPutRequest(String body, String endpoint){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .baseUri(BASE_URI)
+                .put(endpoint);
+    }
+
+    public void sendPatchRequest(String body, String endpoint){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .baseUri(BASE_URI)
+                .patch(endpoint);
+    }
 }
 
 class SampleRest {
