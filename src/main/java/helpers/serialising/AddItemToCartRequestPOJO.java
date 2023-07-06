@@ -16,4 +16,5 @@ public class AddItemToCartRequestPOJO {
         this.quantity = quantity;
         this.return_cart = returnCart;
     }
+
 }

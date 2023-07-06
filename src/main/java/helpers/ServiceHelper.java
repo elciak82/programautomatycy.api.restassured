@@ -1,6 +1,7 @@
 package helpers;
 
 import helpers.serialising.AddItemToCartRequestPOJO;
+import helpers.serialising.UpdateItemToCartRequestPOJO;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import utils.GetPropertyValues;
@@ -126,6 +127,18 @@ public class ServiceHelper {
     }
 
     public Response sendPostRequest(AddItemToCartRequestPOJO body, String endpoint){
+        SAMPLE_REST.response = given()
+                .auth()
+                .preemptive() //form omitted
+                .basic(LOGIN, PASSWORD)
+                .body(body)
+                .contentType(ContentType.JSON)
+                .baseUri(BASE_URI)
+                .post(endpoint);
+        return SAMPLE_REST.response;
+    }
+
+    public Response sendPostRequest(UpdateItemToCartRequestPOJO body, String endpoint){
         SAMPLE_REST.response = given()
                 .auth()
                 .preemptive() //form omitted

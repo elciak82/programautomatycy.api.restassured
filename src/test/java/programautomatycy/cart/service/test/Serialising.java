@@ -1,6 +1,7 @@
 package programautomatycy.cart.service.test;
 
 import helpers.ServiceHelper;
+import helpers.serialising.UpdateItemToCartRequestPOJO;
 import io.restassured.response.Response;
 import org.junit.Test;
 import helpers.serialising.AddItemToCartRequestPOJO;
@@ -23,6 +24,27 @@ public class Serialising {
 
         System.out.println(response.body().prettyPrint());
 
+
+    }
+
+    @Test
+    public void updateCart(){
+        int productId = 142;
+        int quantity = 10;
+        boolean returnCart = false;
+        int updateQuantity = 1;
+
+        AddItemToCartRequestPOJO addBodyRequest = new AddItemToCartRequestPOJO(productId, quantity, returnCart);
+        String addEndpoint = "/cocart/v1/add-item";
+
+        Response addResponse = serviceHelper.sendPostRequest(addBodyRequest, addEndpoint);
+        String key = addResponse.getBody().jsonPath().getString("key");
+
+        UpdateItemToCartRequestPOJO updateBodyRequest = new UpdateItemToCartRequestPOJO(key, returnCart, updateQuantity);
+        String updateEndpoint = "/cocart/v1/item";
+
+        Response updateResponse = serviceHelper.sendPostRequest(updateBodyRequest, updateEndpoint);
+        System.out.println(updateResponse.body().prettyPrint());
 
     }
 }
