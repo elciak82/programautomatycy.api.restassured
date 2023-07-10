@@ -32,7 +32,7 @@ public class ServiceHelper {
                 .post(endpoint);
     }
 
-    public void sendPostRequest(Map<String, Object> queryParamsBody, String endpoint){
+    public Response sendPostRequest(Map<String, Object> queryParamsBody, String endpoint){
         SAMPLE_REST.response = given()
                 .auth()
                 .preemptive() //form omitted
@@ -40,6 +40,8 @@ public class ServiceHelper {
                 .queryParams(queryParamsBody)
                 .baseUri(BASE_URI)
                 .post(endpoint);
+
+        return SAMPLE_REST.response;
     }
 
     public Response sendPostRequest(String body, String endpoint){

@@ -53,6 +53,10 @@ public class AddItemResponse {
         return key;
     }
 
+    public int getProduct_id() {
+        return product_id;
+    }
+
     public int getVariation_id() {
         return variation_id;
     }
