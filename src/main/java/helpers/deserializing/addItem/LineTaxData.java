@@ -1,20 +1,20 @@
-package helpers.deserializing;
+package helpers.deserializing.addItem;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LineTaxData {
 
     @JsonProperty
-    private Object subtotal;
+    private Subtotal subtotal;
 
     @JsonProperty
-    private Object total;
+    private Total total;
 
-    public Object getSubtotal() {
+    public Subtotal getSubtotal() {
         return subtotal;
     }
 
-    public Object getTotal() {
+    public Total getTotal() {
         return total;
     }
 
