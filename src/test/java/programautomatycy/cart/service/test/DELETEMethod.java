@@ -39,7 +39,7 @@ public class DELETEMethod {
     @Test
     public void deleteWithBodyJSONObject() {
         JSONObject bodyRequest = new JSONObject();
-        bodyRequest.put("cart_item_key", "a8baa56554f96369ab93e4f3bb068c22");
+        bodyRequest.put("cart_item_key", "d43ab110ab2489d6b9b2caa394bf920f");
         bodyRequest.put("return_cart", true);
 
         String endpoint = "/cocart/v1/item";

@@ -2,7 +2,9 @@ package programautomatycy.cart.service.test;
 
 import helpers.ServiceHelper;
 import helpers.deserializing.addItem.AddItemResponse;
+import helpers.deserializing.updateItem.UpdateItemResponse;
 import helpers.serialising.AddItemToCartRequestPOJO;
+import helpers.serialising.UpdateItemToCartRequestPOJO;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -61,6 +63,50 @@ public class AssertionsTests {
 
         Assertions.assertEquals(200, responseUpdate.getStatusCode());
         Assertions.assertEquals(10, responseUpdate.getBody().jsonPath().getInt("quantity"));
+
+    }
+
+    @Test
+    public void addItemAndUpdateTest() {
+
+        int productId = 142;
+        int quantity = 10;
+        boolean returnCart = false;
+
+        AddItemToCartRequestPOJO bodyRequest = new AddItemToCartRequestPOJO(productId, quantity, returnCart);
+
+        String addEndpoint = "/cocart/v1/add-item";
+
+        Response addResponse = serviceHelper.sendPostRequest(bodyRequest, addEndpoint);
+
+        AddItemResponse addResponseBody = addResponse.as(AddItemResponse.class);
+        String key = addResponseBody.getKey();
+        String productName = addResponseBody.getProduct_name();
+
+        int updatedQuantity1 = 2;
+
+        UpdateItemToCartRequestPOJO bodyUpdatedRequest1 = new UpdateItemToCartRequestPOJO(key, returnCart, updatedQuantity1);
+
+        String updateEndpoint = "/cocart/v1/item";
+
+        Response updateResponse1 = serviceHelper.sendPostRequest(bodyUpdatedRequest1, updateEndpoint);
+        UpdateItemResponse updateResponseBody1 = updateResponse1.as(UpdateItemResponse.class);
+        String message1 = updateResponseBody1.getMessage();
+
+        Assertions.assertEquals(200, updateResponse1.getStatusCode());
+        Assertions.assertEquals(message1, "The quantity for " + "\"" + productName + "\"" + " has decreased to " + "\"" + updatedQuantity1 + "\".");
+
+        int updatedQuantity2 = 7;
+
+        UpdateItemToCartRequestPOJO bodyUpdatedRequest2 = new UpdateItemToCartRequestPOJO(key, returnCart, updatedQuantity2);
+
+        Response updateResponse2 = serviceHelper.sendPostRequest(bodyUpdatedRequest2, updateEndpoint);
+        UpdateItemResponse updateResponseBody2 = updateResponse2.as(UpdateItemResponse.class);
+        String message2 = updateResponseBody2.getMessage();
+
+        Assertions.assertEquals(200, updateResponse2.getStatusCode());
+        Assertions.assertEquals(message2, "The quantity for " + "\"" + productName + "\"" + " has increased to " + "\"" + updatedQuantity2 + "\".");
+
 
     }
 }
