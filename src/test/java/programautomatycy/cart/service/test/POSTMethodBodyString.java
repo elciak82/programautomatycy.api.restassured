@@ -1,7 +1,7 @@
 package programautomatycy.cart.service.test;
 
 import helpers.ServiceHelper;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;

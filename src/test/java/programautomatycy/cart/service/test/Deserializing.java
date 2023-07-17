@@ -5,7 +5,7 @@ import helpers.deserializing.addItem.AddItemResponse;
 import helpers.deserializing.calculate.CalculateResponse;
 import io.restassured.response.Response;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class Deserializing {
 

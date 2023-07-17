@@ -7,7 +7,7 @@ import helpers.serialising.AddItemToCartRequestPOJO;
 import helpers.serialising.UpdateItemToCartRequestPOJO;
 import io.restassured.response.Response;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.HashMap;

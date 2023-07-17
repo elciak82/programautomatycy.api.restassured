@@ -3,7 +3,7 @@ package programautomatycy.cart.service.test;
 import helpers.ServiceHelper;
 import io.restassured.response.Response;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class UseValueFromResponse {
 

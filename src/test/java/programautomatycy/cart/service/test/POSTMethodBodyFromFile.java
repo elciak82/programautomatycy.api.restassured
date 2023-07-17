@@ -2,7 +2,7 @@ package programautomatycy.cart.service.test;
 
 import helpers.ServiceHelper;
 import net.minidev.json.JSONObject;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import utils.JsonRequestBody;
 
 public class POSTMethodBodyFromFile {

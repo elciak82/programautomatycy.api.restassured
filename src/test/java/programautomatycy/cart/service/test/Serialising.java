@@ -3,7 +3,7 @@ package programautomatycy.cart.service.test;
 import helpers.ServiceHelper;
 import helpers.serialising.UpdateItemToCartRequestPOJO;
 import io.restassured.response.Response;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import helpers.serialising.AddItemToCartRequestPOJO;
 
 public class Serialising {

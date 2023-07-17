@@ -2,7 +2,7 @@ package programautomatycy.cart.service.test;
 
 import helpers.ServiceHelper;
 import io.restassured.response.Response;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class GETMethod {
     private final ServiceHelper serviceHelper = new ServiceHelper();
